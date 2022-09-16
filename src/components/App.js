@@ -17,6 +17,8 @@ function App() {
     const [guessLat,setGuessLat] = useState()
     const [guessLong,setGuessLong] = useState()
     const [distance, setDistance ] = useState(0)
+    const [answer, setAnswer] = useState("")
+
     function LocationMarker() {
         const [position, setPosition] = useState(null);
         const map = useMapEvents({
@@ -26,6 +28,8 @@ function App() {
                 setGuessLat(e.latlng.lat)
                 setGuessLong(e.latlng.lng)
                 calcCrow(lat,long,e.latlng.lat,e.latlng.lng)
+                
+                
             },
             locationfound(e) {
                 setPosition(e.latlng);
@@ -75,6 +79,9 @@ function App() {
         console.log("long1: ",lon1,"Lon2: ",lon2)
         console.log("distance: ",d)
         setDistance(d.toFixed(1))
+        if (d < 100){
+          setAnswer(true)
+        }
     }
 
     // Converts numeric degrees to radians
@@ -111,16 +118,16 @@ function App() {
                     <MapContainer
                         id="map"
                         center={[0, 0]}
-                        zoom={2}
+                        zoom={4}
                         scrollWheelZoom={false}
                     >
                         <TileLayer
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
-                        <Marker position={[lat, long]}>
+                        {answer && <Marker position={[lat, long]}>
                             <Popup>This is the true answer !</Popup>
-                        </Marker>
+                        </Marker>}
                         <LocationMarker />
                     </MapContainer>
                 )}
