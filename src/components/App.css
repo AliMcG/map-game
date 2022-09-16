@@ -5,6 +5,10 @@
   justify-content: space-around;
 }
 
+img {
+  height: 300px;
+  width: 300px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
