@@ -9,7 +9,17 @@ import {
 
 function LeafletMap() {
     const [answer, setAnswer] = useState("");
+    function LocationMarker() {
+        const map = useMapEvents({
+            click(e) {
+                setGuessLat(e.latlng.lat);
+                setGuessLong(e.latlng.lng);
+                calcCrow(lat, long, guessLat, guessLong);
+            },
+        });
+    }
     function calcCrow(lat1, lon1, lat2, lon2) {
+        //This function takes in latitude and longitude of two location and returns the distance between them as the crow flies (in km)
         console.log("True Lat/Long: ", lat1, lon1);
         console.log("Guess Lat/Long: ", lat2, lon2);
         var R = 6371; // km
@@ -33,6 +43,7 @@ function LeafletMap() {
         }
     }
     function toRad(Value) {
+        // Converts numeric degrees to radians
         return (Value * Math.PI) / 180;
     }
     return (
