@@ -5,7 +5,7 @@
   justify-content: space-around;
 }
 
-img {
+.map-tile {
   height: 300px;
   width: 300px;
 }

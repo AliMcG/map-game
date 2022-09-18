@@ -89,7 +89,7 @@ function App() {
     <>
       <div className="App">
         {long && (
-          <img
+          <img className="map-tile"
             src={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${long},${lat},8,0/300x300?access_token=${staticMapApi}`}
             alt="map"
           />
