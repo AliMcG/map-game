@@ -7,10 +7,10 @@ import {
     Marker,
 } from "react-leaflet";
 
-function LeafletMap({ setDistance, long, lat }) {
+function LeafletMap({ distance,setDistance, long, lat }) {
     const [guessLat, setGuessLat] = useState();
     const [guessLong, setGuessLong] = useState();
-    const [answer, setAnswer] = useState("");
+    const [answer, setAnswer] = useState(false);
     function LocationMarker() {
         const map = useMapEvents({
             click(e) {
@@ -49,7 +49,15 @@ function LeafletMap({ setDistance, long, lat }) {
             setAnswer(true);
         }
     }
+    useEffect((minReqDist)=>{
+        checkDistance(minReqDist) 
 
+    },[])
+    function checkDistance (minRequiredDistance) {
+        if (distance < minRequiredDistance) {
+            setAnswer(true)
+        }
+    }
     return (
         <MapContainer id="map" center={[0, 0]} zoom={3} scrollWheelZoom={true}>
             <TileLayer
