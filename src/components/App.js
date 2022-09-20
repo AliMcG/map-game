@@ -1,12 +1,12 @@
-import Map from "react-map-gl";
+//import Map from "react-map-gl";
 import "./App.css";
-import {
+/* import {
     MapContainer,
     TileLayer,
     useMapEvents,
     Popup,
     Marker,
-} from "react-leaflet";
+} from "react-leaflet"; */
 import { useState, useEffect } from "react";
 import LeafletMap from "./LeafletMap/LeafletMap";
 // import L from "leaflet"
@@ -15,9 +15,16 @@ function App() {
     const staticMapApi = process.env.REACT_APP_MAP_KEY;
     const [long, setLong] = useState();
     const [lat, setLat] = useState();
-    const [distance, setDistance] = useState(0);
-
-
+    const [distance, setDistance] = useState();
+    const [difficulty, setDifficulty] = useState({minDistance:100})
+    /* FIXME: Proposed example difficulty object:  
+        { 
+            minDistance: 50 (km)
+            mapTileZoom: 5
+            RoadNames: false 
+        }
+    
+    */
 
 
     useEffect(() => {
@@ -50,7 +57,7 @@ function App() {
                 </h1>
                 <h2>Distance: {distance}</h2>
                 {long && (
-                    <LeafletMap distance = {distance} setDistance={setDistance} long={long} lat={lat} />
+                    <LeafletMap distance = {distance} setDistance={setDistance} long={long} lat={lat} difficulty={difficulty}/>
                 )}
             </div>
         </>

@@ -7,7 +7,7 @@ import {
     Marker,
 } from "react-leaflet";
 
-function LeafletMap({ distance,setDistance, long, lat }) {
+function LeafletMap({ distance,setDistance, long, lat, difficulty }) {
     const [guessLat, setGuessLat] = useState();
     const [guessLong, setGuessLong] = useState();
     const [answer, setAnswer] = useState(false);
@@ -49,9 +49,8 @@ function LeafletMap({ distance,setDistance, long, lat }) {
             setAnswer(true);
         }
     }
-    useEffect((minReqDist)=>{
-        checkDistance(minReqDist) 
-
+    useEffect(()=>{
+        checkDistance(difficulty.minDistance) 
     },[])
     function checkDistance (minRequiredDistance) {
         if (distance < minRequiredDistance) {
