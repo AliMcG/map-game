@@ -1,31 +1,20 @@
-//import Map from "react-map-gl";
 import "./App.css";
-/* import {
-    MapContainer,
-    TileLayer,
-    useMapEvents,
-    Popup,
-    Marker,
-} from "react-leaflet"; */
 import { useState, useEffect } from "react";
-import LeafletMap from "./LeafletMap/LeafletMap";
-// import L from "leaflet"
+import LeafletMap from "./LeafletMap/LeafletMap.js";
+import MapboxMapTile from "./MapboxMap/MapboxMap.js";
 
 function App() {
-    const staticMapApi = process.env.REACT_APP_MAP_KEY;
     const [long, setLong] = useState();
     const [lat, setLat] = useState();
     const [distance, setDistance] = useState();
-    const [difficulty, setDifficulty] = useState({minDistance:100})
+    const [difficulty, /* setDifficulty */] = useState({ minDistance: 100 });
     /* FIXME: Proposed example difficulty object:  
         { 
             minDistance: 50 (km)
             mapTileZoom: 5
             RoadNames: false 
         }
-    
     */
-
 
     useEffect(() => {
         getRandomCoords();
@@ -33,9 +22,7 @@ function App() {
     async function getRandomCoords() {
         // const url = "https://api.3geonames.org/?randomland=yes&json=1";
         // const response = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
-        // console.log(response);
         // const data = await response.json();
-        // console.log(data);
         // setLat(data.major.latt);
         // setLong(data.major.longt);
         setLat(50.71344);
@@ -45,19 +32,19 @@ function App() {
     return (
         <>
             <div className="App">
-                {long && (
-                    <img
-                        className="map-tile"
-                        src={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${long},${lat},8,0/300x300?access_token=${staticMapApi}`}
-                        alt="map"
-                    />
-                )}
+                {long && <MapboxMapTile long={long} lat={lat} />}
                 <h1>
                     Lat: {lat}, Long: {long}
                 </h1>
                 <h2>Distance: {distance}</h2>
                 {long && (
-                    <LeafletMap distance = {distance} setDistance={setDistance} long={long} lat={lat} difficulty={difficulty}/>
+                    <LeafletMap
+                        distance={distance}
+                        setDistance={setDistance}
+                        long={long}
+                        lat={lat}
+                        difficulty={difficulty}
+                    />
                 )}
             </div>
         </>
