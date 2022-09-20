@@ -7,7 +7,9 @@ import {
     Marker,
 } from "react-leaflet";
 
-function LeafletMap() {
+function LeafletMap({ setDistance, long, lat }) {
+    const [guessLat, setGuessLat] = useState();
+    const [guessLong, setGuessLong] = useState();
     const [answer, setAnswer] = useState("");
     function LocationMarker() {
         const map = useMapEvents({
@@ -23,6 +25,11 @@ function LeafletMap() {
         console.log("True Lat/Long: ", lat1, lon1);
         console.log("Guess Lat/Long: ", lat2, lon2);
         var R = 6371; // km
+
+        function toRad(Value) {
+            // Converts numeric degrees to radians
+            return (Value * Math.PI) / 180;
+        }
         var dLat = toRad(lat2 - lat1);
         var dLon = toRad(lon2 - lon1);
         var latTrue = toRad(lat1);
@@ -38,14 +45,11 @@ function LeafletMap() {
         console.log("long1: ", lon1, "Lon2: ", lon2);
         console.log("distance: ", d);
         setDistance(d.toFixed(1));
-            if (d < 100) {
-                setAnswer(true);
-            }
+        if (d < 100) {
+            setAnswer(true);
         }
-    function toRad(Value) {
-        // Converts numeric degrees to radians
-        return (Value * Math.PI) / 180;
     }
+
     return (
         <MapContainer id="map" center={[0, 0]} zoom={3} scrollWheelZoom={true}>
             <TileLayer

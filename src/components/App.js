@@ -29,16 +29,7 @@ function App() {
                 setGuessLong(e.latlng.lng);
                 calcCrow(lat, long, guessLat, guessLong);
             },
-            //   locationfound(e) {
-            //     setPosition(e.latlng);
-            //     map.flyTo(e.latlng, map.getZoom());
-            //   },
         });
-        // return position === null ? null : (
-        //   <Marker position={position}>
-        //     <Popup>You are here</Popup>
-        //   </Marker>
-        // );
     }
 
     useEffect(() => {
