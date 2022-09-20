@@ -38,10 +38,10 @@ function LeafletMap() {
         console.log("long1: ", lon1, "Lon2: ", lon2);
         console.log("distance: ", d);
         setDistance(d.toFixed(1));
-        if (d < 100) {
-            setAnswer(true);
+            if (d < 100) {
+                setAnswer(true);
+            }
         }
-    }
     function toRad(Value) {
         // Converts numeric degrees to radians
         return (Value * Math.PI) / 180;
