@@ -16,7 +16,8 @@ function LeafletMap({ distance,setDistance, long, lat, difficulty, setGuesses })
             click(e) {
                 setGuessLat(e.latlng.lat);
                 setGuessLong(e.latlng.lng);
-                calcCrow(lat, long, guessLat, guessLong);
+                // calcCrow(lat, long, guessLat, guessLong);
+                calcCrow(lat, long, e.latlng.lat, e.latlng.lng);
                 setGuesses((prev)=> prev+1)
             },
         });
