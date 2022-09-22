@@ -2,9 +2,15 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import LeafletMap from "./LeafletMap/LeafletMap.js";
 import MapboxMapTile from "./MapboxMap/MapboxMap.js";
-import Timer from "./Score/Timer";
+import Timer from "./Timer/Timer";
 
 function App() {
+    // Sets a date time number for five minutes in future
+    // Gets the time now and then adds to 2 numbers together to pass to the timer component
+    const inFiveMinutes = 1 * 5 * 1 * 60 * 1000
+    const now = new Date().getTime()
+    const timer = now + inFiveMinutes
+
     const [long, setLong] = useState();
     const [lat, setLat] = useState();
     const [distance, setDistance] = useState();
@@ -58,7 +64,7 @@ function App() {
             </div>
             <h4>Guesses: {guesses}</h4>
             <button onClick={()=> {handleReset()}}>Reset</button>
-            <Timer />
+            <Timer targetDate={timer}/>
         </>
     );
 }
