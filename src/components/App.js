@@ -8,6 +8,7 @@ function App() {
     const [lat, setLat] = useState();
     const [distance, setDistance] = useState();
     const [difficulty, /* setDifficulty */] = useState({ minDistance: 100 });
+    const [guesses, setGuesses] = useState(0)
     /* FIXME: Proposed example difficulty object:  
         { 
             minDistance: 50 (km)
@@ -29,6 +30,12 @@ function App() {
         setLong(-3.5444);
         // setPosition([data.major.latt, data.major.longt]);
     }
+    function handleReset(){
+        setGuesses(0)
+        setDistance(0)
+        getRandomCoords()
+
+    }
     return (
         <>
             <div className="App">
@@ -44,9 +51,12 @@ function App() {
                         long={long}
                         lat={lat}
                         difficulty={difficulty}
+                        setGuesses = {setGuesses}
                     />
                 )}
             </div>
+            <h4>Guesses: {guesses}</h4>
+            <button onClick={()=> {handleReset()}}>Reset</button>
         </>
     );
 }

@@ -7,7 +7,7 @@ import {
     Marker,
 } from "react-leaflet";
 
-function LeafletMap({ distance,setDistance, long, lat, difficulty }) {
+function LeafletMap({ distance,setDistance, long, lat, difficulty, setGuesses }) {
     const [guessLat, setGuessLat] = useState();
     const [guessLong, setGuessLong] = useState();
     const [answer, setAnswer] = useState(false);
@@ -16,7 +16,9 @@ function LeafletMap({ distance,setDistance, long, lat, difficulty }) {
             click(e) {
                 setGuessLat(e.latlng.lat);
                 setGuessLong(e.latlng.lng);
-                calcCrow(lat, long, guessLat, guessLong);
+                // calcCrow(lat, long, guessLat, guessLong);
+                calcCrow(lat, long, e.latlng.lat, e.latlng.lng);
+                setGuesses((prev)=> prev+1)
             },
         });
     }
