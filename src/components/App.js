@@ -2,6 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import LeafletMap from "./LeafletMap/LeafletMap.js";
 import MapboxMapTile from "./MapboxMap/MapboxMap.js";
+import Timer from "./Score/Timer";
 
 function App() {
     const [long, setLong] = useState();
@@ -57,6 +58,7 @@ function App() {
             </div>
             <h4>Guesses: {guesses}</h4>
             <button onClick={()=> {handleReset()}}>Reset</button>
+            <Timer />
         </>
     );
 }
