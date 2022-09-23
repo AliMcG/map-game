@@ -7,10 +7,10 @@ import {
     Marker,
 } from "react-leaflet";
 
-function LeafletMap({ distance,setDistance, long, lat, difficulty, setGuesses }) {
+function LeafletMap({ distance,setDistance, long, lat, difficulty, setGuesses, answer, setAnswer }) {
     const [guessLat, setGuessLat] = useState();
     const [guessLong, setGuessLong] = useState();
-    const [answer, setAnswer] = useState(false);
+    
     function LocationMarker() {
         const map = useMapEvents({
             click(e) {

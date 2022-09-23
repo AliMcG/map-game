@@ -16,6 +16,8 @@ function App() {
     const [distance, setDistance] = useState();
     const [difficulty, /* setDifficulty */] = useState({ minDistance: 100 });
     const [guesses, setGuesses] = useState(0)
+    const [answer, setAnswer] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(null)
     /* FIXME: Proposed example difficulty object:  
         { 
             minDistance: 50 (km)
@@ -59,12 +61,14 @@ function App() {
                         lat={lat}
                         difficulty={difficulty}
                         setGuesses = {setGuesses}
+                        answer={answer}
+                        setAnswer={setAnswer}
                     />
                 )}
             </div>
             <h4>Guesses: {guesses}</h4>
             <button onClick={()=> {handleReset()}}>Reset</button>
-            <Timer targetDate={timer}/>
+            <Timer targetDate={timer} answer={answer} guesses={guesses}/>
         </>
     );
 }
