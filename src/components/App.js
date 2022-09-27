@@ -2,13 +2,14 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import LeafletMap from "./LeafletMap/LeafletMap.js";
 import MapboxMapTile from "./MapboxMap/MapboxMap.js";
+import Instructions from "./Instructions/Instructions.js";
 
 function App() {
     const [long, setLong] = useState();
     const [lat, setLat] = useState();
     const [distance, setDistance] = useState();
-    const [difficulty, /* setDifficulty */] = useState({ minDistance: 100 });
-    const [guesses, setGuesses] = useState(0)
+    const [difficulty /* setDifficulty */] = useState({ minDistance: 100 });
+    const [guesses, setGuesses] = useState(0);
     /* FIXME: Proposed example difficulty object:  
         { 
             minDistance: 50 (km)
@@ -30,11 +31,10 @@ function App() {
         setLong(-3.5444);
         // setPosition([data.major.latt, data.major.longt]);
     }
-    function handleReset(){
-        setGuesses(0)
-        setDistance(0)
-        getRandomCoords()
-
+    function handleReset() {
+        setGuesses(0);
+        setDistance(0);
+        getRandomCoords();
     }
     return (
         <>
@@ -51,12 +51,19 @@ function App() {
                         long={long}
                         lat={lat}
                         difficulty={difficulty}
-                        setGuesses = {setGuesses}
+                        setGuesses={setGuesses}
                     />
                 )}
             </div>
+            <Instructions />
             <h4>Guesses: {guesses}</h4>
-            <button onClick={()=> {handleReset()}}>Reset</button>
+            <button
+                onClick={() => {
+                    handleReset();
+                }}
+            >
+                Reset
+            </button>
         </>
     );
 }
