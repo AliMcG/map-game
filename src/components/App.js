@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import LeafletMap from "./LeafletMap/LeafletMap.js";
 import MapboxMapTile from "./MapboxMap/MapboxMap.js";
 import Instructions from "./Instructions/Instructions.js";
-
+import Scoreboard from "./Scoreboard/Scoreboard.js";
 function App() {
     const [long, setLong] = useState();
     const [lat, setLat] = useState();
@@ -39,31 +39,35 @@ function App() {
     return (
         <>
             <div className="App">
-                {long && <MapboxMapTile long={long} lat={lat} />}
-                <h1>
-                    Lat: {lat}, Long: {long}
-                </h1>
-                <h2>Distance: {distance}</h2>
-                {long && (
-                    <LeafletMap
-                        distance={distance}
-                        setDistance={setDistance}
-                        long={long}
-                        lat={lat}
-                        difficulty={difficulty}
-                        setGuesses={setGuesses}
-                    />
-                )}
+                <div className="game-components">
+                    {long && <MapboxMapTile long={long} lat={lat} />}
+                    <h1>
+                        Lat: {lat}, Long: {long}
+                    </h1>
+                    <h2>Distance: {distance}</h2>
+                    <Scoreboard />
+                    {long && (
+                        <LeafletMap
+                            distance={distance}
+                            setDistance={setDistance}
+                            long={long}
+                            lat={lat}
+                            difficulty={difficulty}
+                            setGuesses={setGuesses}
+                        />
+                    )}
+                </div>
+
+                <h4>Guesses: {guesses}</h4>
+                <Instructions />
+                <button
+                    onClick={() => {
+                        handleReset();
+                    }}
+                >
+                    Reset
+                </button>
             </div>
-            <Instructions />
-            <h4>Guesses: {guesses}</h4>
-            <button
-                onClick={() => {
-                    handleReset();
-                }}
-            >
-                Reset
-            </button>
         </>
     );
 }

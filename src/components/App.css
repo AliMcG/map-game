@@ -1,8 +1,8 @@
 .App {
-  text-align: center;
-  display: flex;
+/*   text-align: center; */
+/*   display: flex; */
   /* background-color: #61dafb; */
-  justify-content: space-around;
+ /*  justify-content: space-around; */
 }
 
 .map-tile {
@@ -48,4 +48,10 @@
   height: 500px;
   width: 500px;
   /* overflow: hidden; */
+}
+.game-components {
+    text-align: center;
+    display: flex;
+   justify-content: space-around;
+    border: 3px solid navy;
 }
