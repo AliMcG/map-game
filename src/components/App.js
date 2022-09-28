@@ -2,13 +2,22 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import LeafletMap from "./LeafletMap/LeafletMap.js";
 import MapboxMapTile from "./MapboxMap/MapboxMap.js";
+import Timer from "./Timer/Timer";
 
 function App() {
+    // Sets a date time number for five minutes in future
+    // Gets the time now and then adds to 2 numbers together to pass to the timer component
+    const inFiveMinutes = 1 * 5 * 1 * 60 * 1000
+    const now = new Date().getTime()
+    const timer = now + inFiveMinutes
+
     const [long, setLong] = useState();
     const [lat, setLat] = useState();
     const [distance, setDistance] = useState();
     const [difficulty, /* setDifficulty */] = useState({ minDistance: 100 });
     const [guesses, setGuesses] = useState(0)
+    const [answer, setAnswer] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(null)
     /* FIXME: Proposed example difficulty object:  
         { 
             minDistance: 50 (km)
@@ -52,11 +61,14 @@ function App() {
                         lat={lat}
                         difficulty={difficulty}
                         setGuesses = {setGuesses}
+                        answer={answer}
+                        setAnswer={setAnswer}
                     />
                 )}
             </div>
             <h4>Guesses: {guesses}</h4>
             <button onClick={()=> {handleReset()}}>Reset</button>
+            <Timer targetDate={timer} answer={answer} guesses={guesses}/>
         </>
     );
 }
