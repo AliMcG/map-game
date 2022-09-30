@@ -8,7 +8,7 @@ function SettingsModal({ showModal, toggleModal }) {
                 <div className="settings-modal">
                     <form>
                         <p>Settings</p>
-                        <label for="tile zoom">Tile zoom</label>
+                        <label for="tile zoom">Tile zoom: </label>
                         <input
                             // class="input-row"
                             type="number"
@@ -27,7 +27,7 @@ function SettingsModal({ showModal, toggleModal }) {
                             placeholder="tile zoom"
                         ></input><label for="tile zoom">Tile zoom(between 1 and 20):</label> */}
                         <label for="mminimum guess radius">
-                            Mimimum guess radius
+                            Mimimum guess radius (km):  
                         </label>
                         <input
                             // class="input-row"
@@ -38,7 +38,7 @@ function SettingsModal({ showModal, toggleModal }) {
                             name="minimum guess radius"
                         />
                         <br />
-                        <label for="maximum time">Time limit</label>
+                        <label for="maximum time">Time limit: </label>
                         <input
                             type="time"
                             placeholder="maximum time"
