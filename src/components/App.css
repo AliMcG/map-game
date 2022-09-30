@@ -1,8 +1,12 @@
 .App {
-    /*   text-align: center; */
+      /* text-align: center; */
     /*   display: flex; */
     /* background-color: #61dafb; */
     /*  justify-content: space-around; */
+    border: 5px solid yellowgreen;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
 }
 
 .map-tile {

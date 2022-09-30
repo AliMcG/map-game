@@ -12,7 +12,7 @@ function App() {
     const [distance, setDistance] = useState();
     const [difficulty /* setDifficulty */] = useState({ minDistance: 100 });
     const [guesses, setGuesses] = useState(0);
-    const { toggleModal,showModal } = useSettingsModal();
+    const { toggleModal, showModal } = useSettingsModal();
     /* FIXME: Proposed example difficulty object:  
         { 
             minDistance: 50 (km)
@@ -67,7 +67,7 @@ function App() {
                     </button>
                 </div>
                 <button onClick={toggleModal}>Settings</button>
-                {showModal &&<SettingsModal />}
+              <SettingsModal showModal={showModal} toggleModal={toggleModal} />
             </div>
         </>
     );
