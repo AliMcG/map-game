@@ -1,11 +1,15 @@
-.settings-modal{
+.settings-modal {
     border: 3px solid orange;
-    position:absolute;
-    width:20%;
+    position: absolute;
+    width: 20%;
     top: 40%;
     left: 40%;
     bottom: 40%;
     right: 40%;
+    /* text-align: center; */
     /* display: inline-block; */
-
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
 }
