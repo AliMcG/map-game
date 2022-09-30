@@ -4,12 +4,15 @@ import LeafletMap from "./LeafletMap/LeafletMap.js";
 import MapboxMapTile from "./MapboxMap/MapboxMap.js";
 import Instructions from "./Instructions/Instructions.js";
 import Scoreboard from "./Scoreboard/Scoreboard.js";
+import useSettingsModal from "../hooks/useSettingsModal";
+import SettingsModal from "./SettingsModal/SettingsModal";
 function App() {
     const [long, setLong] = useState();
     const [lat, setLat] = useState();
     const [distance, setDistance] = useState();
     const [difficulty /* setDifficulty */] = useState({ minDistance: 100 });
     const [guesses, setGuesses] = useState(0);
+    const { toggleModal,showModal } = useSettingsModal();
     /* FIXME: Proposed example difficulty object:  
         { 
             minDistance: 50 (km)
@@ -63,6 +66,8 @@ function App() {
                         Reset
                     </button>
                 </div>
+                <button onClick={toggleModal}>Settings</button>
+                {showModal &&<SettingsModal />}
             </div>
         </>
     );

@@ -1,0 +1,6 @@
+.settings-modal{
+    border: 3px solid orange;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
