@@ -41,7 +41,7 @@ function App() {
             <div className="App">
                 <div className="game-components">
                     {long && <MapboxMapTile long={long} lat={lat} />}
-                    <Scoreboard distance={distance} guesses={guesses}/>
+                    <Scoreboard distance={distance} guesses={guesses} />
                     {long && (
                         <LeafletMap
                             distance={distance}
@@ -53,14 +53,16 @@ function App() {
                         />
                     )}
                 </div>
-                <Instructions />
-                <button
-                    onClick={() => {
-                        handleReset();
-                    }}
-                >
-                    Reset
-                </button>
+                <div className="lower-container">
+                    <Instructions />
+                    <button
+                        onClick={() => {
+                            handleReset();
+                        }}
+                    >
+                        Reset
+                    </button>
+                </div>
             </div>
         </>
     );
