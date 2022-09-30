@@ -41,11 +41,10 @@ function App() {
             <div className="App">
                 <div className="game-components">
                     {long && <MapboxMapTile long={long} lat={lat} />}
-                    <h1>
+                    {/* <h1>
                         Lat: {lat}, Long: {long}
-                    </h1>
-                    <h2>Distance: {distance}</h2>
-                    <Scoreboard />
+                    </h1> */}
+                    <Scoreboard distance={distance} guesses={guesses}/>
                     {long && (
                         <LeafletMap
                             distance={distance}
@@ -57,8 +56,6 @@ function App() {
                         />
                     )}
                 </div>
-
-                <h4>Guesses: {guesses}</h4>
                 <Instructions />
                 <button
                     onClick={() => {
