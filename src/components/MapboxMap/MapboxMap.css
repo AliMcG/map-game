@@ -1,0 +1,9 @@
+.map-tile{
+    position:relative;
+    width:50%
+}
+.map-tile::after{
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}

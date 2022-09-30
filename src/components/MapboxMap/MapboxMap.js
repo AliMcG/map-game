@@ -1,6 +1,6 @@
 // import { MapboxMap } from "react-map-gl"; unnecessary
-
-function MapboxMapTile ({long,lat}) {
+import "./MapboxMap.css";
+function MapboxMapTile({ long, lat }) {
     const staticMapApi = process.env.REACT_APP_MAP_KEY;
     return (
         <img
@@ -10,4 +10,4 @@ function MapboxMapTile ({long,lat}) {
         />
     );
 }
-export default MapboxMapTile
+export default MapboxMapTile;

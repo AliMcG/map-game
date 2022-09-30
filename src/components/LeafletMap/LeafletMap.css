@@ -1,0 +1,9 @@
+.leaflet-map{
+    position:relative;
+    width:50%
+}
+.leaflet-map::after{
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}

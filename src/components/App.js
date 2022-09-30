@@ -41,9 +41,6 @@ function App() {
             <div className="App">
                 <div className="game-components">
                     {long && <MapboxMapTile long={long} lat={lat} />}
-                    {/* <h1>
-                        Lat: {lat}, Long: {long}
-                    </h1> */}
                     <Scoreboard distance={distance} guesses={guesses}/>
                     {long && (
                         <LeafletMap
