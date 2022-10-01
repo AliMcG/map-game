@@ -64,6 +64,8 @@ function App() {
                             lat={lat}
                             difficulty={difficulty}
                             setGuesses={setGuesses}
+                            answer={answer}
+                            setAnswer={setAnswer}
                         />
                     )}
                 </div>
