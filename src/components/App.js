@@ -2,6 +2,10 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import LeafletMap from "./LeafletMap/LeafletMap.js";
 import MapboxMapTile from "./MapboxMap/MapboxMap.js";
+import Instructions from "./Instructions/Instructions.js";
+import Scoreboard from "./Scoreboard/Scoreboard.js";
+import useSettingsModal from "../hooks/useSettingsModal";
+import SettingsModal from "./SettingsModal/SettingsModal";
 import Timer from "./Timer/Timer";
 
 function App() {
@@ -14,8 +18,9 @@ function App() {
     const [long, setLong] = useState();
     const [lat, setLat] = useState();
     const [distance, setDistance] = useState();
-    const [difficulty, /* setDifficulty */] = useState({ minDistance: 100 });
-    const [guesses, setGuesses] = useState(0)
+    const [difficulty /* setDifficulty */] = useState({ minDistance: 100 });
+    const [guesses, setGuesses] = useState(0);
+    const { toggleModal, showModal } = useSettingsModal();
     const [answer, setAnswer] = useState(false);
     const [timeLeft, setTimeLeft] = useState(null)
     /* FIXME: Proposed example difficulty object:  
@@ -39,36 +44,44 @@ function App() {
         setLong(-3.5444);
         // setPosition([data.major.latt, data.major.longt]);
     }
-    function handleReset(){
-        setGuesses(0)
-        setDistance(0)
-        getRandomCoords()
-
+    function handleReset() {
+        setGuesses(0);
+        setDistance(0);
+        getRandomCoords();
     }
     return (
         <>
             <div className="App">
-                {long && <MapboxMapTile long={long} lat={lat} />}
-                <h1>
-                    Lat: {lat}, Long: {long}
-                </h1>
-                <h2>Distance: {distance}</h2>
-                {long && (
-                    <LeafletMap
-                        distance={distance}
-                        setDistance={setDistance}
-                        long={long}
-                        lat={lat}
-                        difficulty={difficulty}
-                        setGuesses = {setGuesses}
-                        answer={answer}
-                        setAnswer={setAnswer}
-                    />
-                )}
+                <div className="game-components">
+                    {long && <MapboxMapTile long={long} lat={lat} />}
+                    <Scoreboard distance={distance} guesses={guesses} />
+                    <Timer targetDate={timer} answer={answer} guesses={guesses} />
+                    {long && (
+                        <LeafletMap
+                            distance={distance}
+                            setDistance={setDistance}
+                            long={long}
+                            lat={lat}
+                            difficulty={difficulty}
+                            setGuesses={setGuesses}
+                            answer={answer}
+                            setAnswer={setAnswer}
+                        />
+                    )}
+                </div>
+                <div className="lower-container">
+                    <Instructions />
+                    <button
+                        onClick={() => {
+                            handleReset();
+                        }}
+                    >
+                        Reset
+                    </button>
+                </div>
+                <button onClick={toggleModal}>Settings</button>
+              <SettingsModal showModal={showModal} toggleModal={toggleModal} />
             </div>
-            <h4>Guesses: {guesses}</h4>
-            <button onClick={()=> {handleReset()}}>Reset</button>
-            <Timer targetDate={timer} answer={answer} guesses={guesses}/>
         </>
     );
 }

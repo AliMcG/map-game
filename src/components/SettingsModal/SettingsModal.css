@@ -1,0 +1,23 @@
+.settings-modal {
+    border: 3px solid orange;
+    position: absolute;
+    width: 30%;
+    top: 30%;
+    left: 35%;
+    bottom: 40%;
+    right: 35%;
+    /* text-align: center; */
+    /* display: inline-block; */
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    z-index: 9999;
+    background-color: beige;
+}
+.input-row {
+    display: block;
+}
+#tile-zoom {
+    width: 50%;
+}

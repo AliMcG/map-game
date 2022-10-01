@@ -6,6 +6,7 @@ import {
     Popup,
     Marker,
 } from "react-leaflet";
+import "./LeafletMap.css"
 
 function LeafletMap({ distance,setDistance, long, lat, difficulty, setGuesses, answer, setAnswer }) {
     const [guessLat, setGuessLat] = useState();
@@ -60,7 +61,7 @@ function LeafletMap({ distance,setDistance, long, lat, difficulty, setGuesses, a
         }
     }
     return (
-        <MapContainer id="map" center={[0, 0]} zoom={3} scrollWheelZoom={true}>
+        <MapContainer className="leaflet-map" id="map" center={[0, 0]} zoom={3} scrollWheelZoom={true}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
