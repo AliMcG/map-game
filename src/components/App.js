@@ -6,13 +6,23 @@ import Instructions from "./Instructions/Instructions.js";
 import Scoreboard from "./Scoreboard/Scoreboard.js";
 import useSettingsModal from "../hooks/useSettingsModal";
 import SettingsModal from "./SettingsModal/SettingsModal";
+import Timer from "./Timer/Timer";
+
 function App() {
+    // Sets a date time number for five minutes in future
+    // Gets the time now and then adds to 2 numbers together to pass to the timer component
+    const inFiveMinutes = 1 * 5 * 1 * 60 * 1000
+    const now = new Date().getTime()
+    const timer = now + inFiveMinutes
+
     const [long, setLong] = useState();
     const [lat, setLat] = useState();
     const [distance, setDistance] = useState();
     const [difficulty /* setDifficulty */] = useState({ minDistance: 100 });
     const [guesses, setGuesses] = useState(0);
     const { toggleModal, showModal } = useSettingsModal();
+    const [answer, setAnswer] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(null)
     /* FIXME: Proposed example difficulty object:  
         { 
             minDistance: 50 (km)
@@ -45,6 +55,7 @@ function App() {
                 <div className="game-components">
                     {long && <MapboxMapTile long={long} lat={lat} />}
                     <Scoreboard distance={distance} guesses={guesses} />
+                    <Timer />
                     {long && (
                         <LeafletMap
                             distance={distance}
