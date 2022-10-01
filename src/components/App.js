@@ -55,7 +55,7 @@ function App() {
                 <div className="game-components">
                     {long && <MapboxMapTile long={long} lat={lat} />}
                     <Scoreboard distance={distance} guesses={guesses} />
-                    <Timer />
+                    <Timer targetDate={timer} answer={answer} guesses={guesses} />
                     {long && (
                         <LeafletMap
                             distance={distance}
