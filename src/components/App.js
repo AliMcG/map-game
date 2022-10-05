@@ -35,8 +35,12 @@ function App() {
   }, []);
   async function getRandomCoords() {
     // const url = "https://api.3geonames.org/?randomland=yes&json=1";
-    // const response = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
-    // const data = await response.json();
+    const response = await fetch("http://localhost:5000/map-api/coords");
+    const data = await response.json();
+    console.log(data)
+    console.log(data.major)
+    // const newData = JSON.stringify(data)
+    // console.log(newData)
     // setLat(data.major.latt);
     // setLong(data.major.longt);
     setLat(50.71344);
