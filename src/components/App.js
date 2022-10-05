@@ -91,7 +91,6 @@ function App() {
                 <button onClick={toggleModal}>Settings</button>
                 {showModal && (
                     <SettingsModal
-                        showModal={showModal}
                         toggleModal={toggleModal}
                         changeTileZoom={changeTileZoom}
                         changeMinDistance={changeMinDistance}

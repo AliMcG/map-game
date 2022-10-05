@@ -1,5 +1,4 @@
 import "./SettingsModal.css";
-// import useSettings from "../../hooks/useSettings";
 function SettingsModal({
     toggleModal,
     difficulty,
@@ -47,13 +46,14 @@ function SettingsModal({
                             placeholder="tile zoom"
                         ></input><label for="tile zoom">Tile zoom(between 1 and 20):</label> */}
                     <label htmlFor="minimum guess radius">
-                        Mimimum guess radius (km):
+                        Mimimum guess radius (km):{" "}
                     </label>
                     <input
                         // class="input-row"
                         type="number"
                         placeholder="minimum guess radius"
                         min="10"
+                        value={difficulty.minDistance}
                         max="1000"
                         name="minimum guess radius"
                         onChange={(e) => {
@@ -76,8 +76,8 @@ function SettingsModal({
                         type="text"
                         placeholder="some other difficulty setting..."
                     />
-                    {/* Apply button may carry out all the changes once, instead of the state updating instantly onChange */}
-                    <button type="submit">Apply</button> 
+                    {/* TODO: Apply button may carry out all the changes once, instead of the state updating instantly onChange  */}
+                    <button type="submit">Apply</button>
                     <input className="input-row" type="reset" />
                     <button className="input-row" onClick={toggleModal}>
                         Close

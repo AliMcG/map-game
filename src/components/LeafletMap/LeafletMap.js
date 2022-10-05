@@ -80,7 +80,9 @@ function LeafletMap({
   }
   useEffect(() => {
     checkDistance(difficulty.minDistance);
+    
   }, []);
+  console.log("min distance lmap: ", difficulty.minDistance);
   function checkDistance(minRequiredDistance) {
     if (distance < minRequiredDistance) {
       setAnswer(true);
