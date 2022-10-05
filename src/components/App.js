@@ -9,7 +9,8 @@ import SettingsModal from "./SettingsModal/SettingsModal";
 import Timer from "./Timer/Timer";
 import useSettings from "../hooks/useSettings";
 function App() {
-    const { difficulty, changeTileZoom } = useSettings();
+    const { difficulty, changeTileZoom, changeMinDistance, changeTimeLimit } =
+        useSettings();
     // Sets a date time number for five minutes in future
     // Gets the time now and then adds to 2 numbers together to pass to the timer component
     const inFiveMinutes = 1 * 5 * 1 * 60 * 1000;
@@ -19,17 +20,9 @@ function App() {
     const [long, setLong] = useState();
     const [lat, setLat] = useState();
     const [distance, setDistance] = useState();
-    //   const [difficulty /* setDifficulty */] = useState({ minDistance: 100 });
     const [guesses, setGuesses] = useState(0);
     const { toggleModal, showModal } = useSettingsModal();
     const [answer, setAnswer] = useState(false);
-    /* FIXME: Proposed example difficulty object:  
-        { 
-            minDistance: 50 (km)
-            mapTileZoom: 5
-            RoadNames: false 
-        }
-    */
 
     useEffect(() => {
         getRandomCoords();
@@ -49,7 +42,7 @@ function App() {
         setDistance(0);
         getRandomCoords();
     }
-    console.log("dtz (app):",difficulty.tileZoom)
+    console.log("dtz (app):", difficulty.tileZoom);
     return (
         <>
             <div className="App">
@@ -96,12 +89,16 @@ function App() {
                     </button>
                 </div>
                 <button onClick={toggleModal}>Settings</button>
-                <SettingsModal
-                    showModal={showModal}
-                    toggleModal={toggleModal}
-                    changeTileZoom={changeTileZoom}
-                    difficulty={difficulty}
-                />
+                {showModal && (
+                    <SettingsModal
+                        showModal={showModal}
+                        toggleModal={toggleModal}
+                        changeTileZoom={changeTileZoom}
+                        changeMinDistance={changeMinDistance}
+                        changeTimeLimit={changeTimeLimit}
+                        difficulty={difficulty}
+                    />
+                )}
             </div>
         </>
     );

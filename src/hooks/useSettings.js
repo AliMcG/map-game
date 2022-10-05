@@ -6,6 +6,7 @@ export default function useSettings() {
         minDistance: 100,
         timeLimit: 5,
         tileZoom: 8,
+        //Future options: Road names/ country names on, 
     });
     function changeMinDistance(newDistance) {
         setDifficulty({ ...difficulty, minDistance: newDistance });
