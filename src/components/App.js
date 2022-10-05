@@ -8,12 +8,16 @@ import useSettingsModal from '../hooks/useSettingsModal';
 import SettingsModal from './SettingsModal/SettingsModal';
 import Timer from './Timer/Timer';
 
+
+
 function App() {
   // Sets a date time number for five minutes in future
   // Gets the time now and then adds to 2 numbers together to pass to the timer component
   const inFiveMinutes = 1 * 5 * 1 * 60 * 1000;
   const now = new Date().getTime();
   const timer = now + inFiveMinutes;
+
+  const parser = new DOMParser()
 
   const [long, setLong] = useState();
   const [lat, setLat] = useState();
@@ -34,18 +38,25 @@ function App() {
     getRandomCoords();
   }, []);
   async function getRandomCoords() {
-    // const url = "https://api.3geonames.org/?randomland=yes&json=1";
-    const response = await fetch("http://localhost:5000/map-api/coords");
+    // Sends a GET request to our Express.js server 
+    //which in tern gets the random coords from this api: "https://api.3geonames.org/?randomland=yes&json=1"
+    const response = await fetch(process.env.REACT_APP_RANDOM_COORDS_URL);
     const data = await response.json();
-    console.log(data)
-    console.log(data.major)
-    // const newData = JSON.stringify(data)
-    // console.log(newData)
-    // setLat(data.major.latt);
-    // setLong(data.major.longt);
-    setLat(50.71344);
-    setLong(-3.5444);
-    // setPosition([data.major.latt, data.major.longt]);
+    
+    // The data returns in XML format parser from DOMParser is a way to get inside the data object.
+    // https://www.w3schools.com/xml/xml_parser.asp
+    const newData = parser.parseFromString(data, "text/xml")
+    
+    const coords = newData.getElementsByTagName("major")
+    // This is the path into the data
+    // console.log(coords[0].children[1].innerHTML)
+    setLat(coords[0].children[0].innerHTML);
+    setLong(coords[0].children[1].innerHTML);
+    
+    // Hardcoded coordinates for Exeter, to help with testing or debugging.
+    // setLat(50.71344);
+    // setLong(-3.5444);
+    
   }
   function handleReset() {
     setGuesses(0);
