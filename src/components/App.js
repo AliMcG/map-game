@@ -42,7 +42,7 @@ function App() {
         setDistance(0);
         getRandomCoords();
     }
-    console.log("dtz (app):", difficulty.tileZoom);
+    console.log("dtl (app):", difficulty.timeLimit);
     return (
         <>
             <div className="App">
@@ -60,13 +60,14 @@ function App() {
                         difficulty={difficulty}
                     />
                     <Timer
+                        timeLimit={difficulty.timeLimit}
                         targetDate={timer}
                         answer={answer}
                         guesses={guesses}
                     />
                     {long && (
                         <LeafletMap
-                            distance={distance}
+                            // distance={distance}
                             setDistance={setDistance}
                             long={long}
                             lat={lat}

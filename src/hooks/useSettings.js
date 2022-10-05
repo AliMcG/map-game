@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function useSettings() {
     const [difficulty, setDifficulty] = useState({
         minDistance: 100,
-        timeLimit: 5,
+        timeLimit: 300,
         tileZoom: 8,
         //Future options: Road names/ country names on, 
     });

@@ -63,8 +63,9 @@ function SettingsModal({
                     <br />
                     <label htmlFor="maximum time">Time limit: </label>
                     <input
-                        type="time"
+                        type="number"
                         placeholder="maximum time"
+                        value={difficulty.timeLimit}
                         name="maximum time"
                         onChange={(e) => {
                             updateTL(e);

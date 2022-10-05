@@ -9,6 +9,7 @@ import {
 import "./LeafletMap.css";
 
 function LeafletMap({
+    /* distance, */
     setDistance,
     long,
     lat,
