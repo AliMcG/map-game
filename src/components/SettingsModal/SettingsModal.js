@@ -1,8 +1,8 @@
 import "./SettingsModal.css";
-import useSettings from "../../hooks/useSettings";
-function SettingsModal({ showModal, toggleModal }) {
-    const { changeMinDistance, changeTileZoom, changeTimeLimit } =
-        useSettings();
+// import useSettings from "../../hooks/useSettings";
+function SettingsModal({ showModal, toggleModal, changeTileZoom, difficulty }) {
+    // const { changeMinDistance, changeTileZoom, changeTimeLimit,difficulty } =
+    //     useSettings();
     function updateTZ(e) {
         changeTileZoom(e.target.value);
         console.log("TZ updated: ", e.target.value);
@@ -18,9 +18,9 @@ function SettingsModal({ showModal, toggleModal }) {
                             // class="input-row"
                             type="number"
                             placeholder="tile zoom"
-                            min="1"
-                            value="8"
-                            max="20"
+                            min="5"
+                            value={difficulty.tileZoom}
+                            max="10"
                             name="tile zoom"
                             id="tile-zoom"
                             onChange={(e) => {

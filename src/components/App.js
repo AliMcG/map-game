@@ -9,7 +9,7 @@ import SettingsModal from "./SettingsModal/SettingsModal";
 import Timer from "./Timer/Timer";
 import useSettings from "../hooks/useSettings";
 function App() {
-    const { difficulty } = useSettings();
+    const { difficulty, changeTileZoom } = useSettings();
     // Sets a date time number for five minutes in future
     // Gets the time now and then adds to 2 numbers together to pass to the timer component
     const inFiveMinutes = 1 * 5 * 1 * 60 * 1000;
@@ -49,12 +49,23 @@ function App() {
         setDistance(0);
         getRandomCoords();
     }
+    console.log("dtz (app):",difficulty.tileZoom)
     return (
         <>
             <div className="App">
                 <div className="game-components">
-                    {long && <MapboxMapTile long={long} lat={lat} zoom={difficulty.tileZoom} />}
-                    <Scoreboard distance={distance} guesses={guesses} difficulty={difficulty} />
+                    {long && (
+                        <MapboxMapTile
+                            long={long}
+                            lat={lat}
+                            zoom={difficulty.tileZoom}
+                        />
+                    )}
+                    <Scoreboard
+                        distance={distance}
+                        guesses={guesses}
+                        difficulty={difficulty}
+                    />
                     <Timer
                         targetDate={timer}
                         answer={answer}
@@ -88,6 +99,8 @@ function App() {
                 <SettingsModal
                     showModal={showModal}
                     toggleModal={toggleModal}
+                    changeTileZoom={changeTileZoom}
+                    difficulty={difficulty}
                 />
             </div>
         </>
