@@ -9,6 +9,6 @@ function useSettingsModal() {
         setShowModal(!showModal);
     }
 
-    return { showModal, toggleModal, setShowModal };
+    return { showModal, toggleModal };
 }
 export default useSettingsModal;

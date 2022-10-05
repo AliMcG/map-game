@@ -1,7 +1,8 @@
-import useSettingsModal from "../../hooks/useSettingsModal";
 import "./SettingsModal.css";
+import useSettings from "../../hooks/useSettings";
 function SettingsModal({ showModal, toggleModal }) {
-    // const { toggleModal } = useSettingsModal();
+    const { changeMinDistance, changeTileZoom, changeTimeLimit } =
+        useSettings();
     return (
         <>
             {showModal && (
@@ -26,8 +27,8 @@ function SettingsModal({ showModal, toggleModal }) {
                             max="20"
                             placeholder="tile zoom"
                         ></input><label for="tile zoom">Tile zoom(between 1 and 20):</label> */}
-                        <label for="mminimum guess radius">
-                            Mimimum guess radius (km):  
+                        <label for="minimum guess radius">
+                            Mimimum guess radius (km):
                         </label>
                         <input
                             // class="input-row"
