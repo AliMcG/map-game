@@ -1,15 +1,21 @@
 import React from "react";
 import Countdown from "react-countdown";
+// import { useScore } from "../../hooks/useScore";
+import {FinalScore} from "../Timer/Timer.js"
 
-const CountdownWrapper = () => {
-  const Completionist = () => <span>You are good to go!</span>;
-
+const CountdownWrapper = ({answer}) => {
+  const Completionist = () => <span>You are out of Time!</span>;
+  
   // Renderer callback with condition
   const renderer = ({ minutes, seconds, completed }) => {
     if (completed) {
       // Render a completed state
       return <Completionist />;
-    } else {
+    } else if (answer.answer) {
+      return <FinalScore minutes={minutes} seconds={seconds} guesses={answer.totalGuesses}/>
+    }
+    
+    else {
       // Render a countdown
       return (
         <span>

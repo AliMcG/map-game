@@ -24,6 +24,7 @@ const CountDown = ({ days, hours, minutes, seconds }) => {
 
 // calculates the final score based on time taken / number of guesses
 const FinalScore = ({ minutes, seconds, guesses }) => {
+  console.log(minutes, seconds)
   const finalTime = useScore(minutes, seconds, guesses);
   return <h3>You got it! Your score is: {finalTime} points.</h3>;
 };
@@ -41,4 +42,4 @@ const Timer = ({ targetDate, answer, guesses }) => {
   }
 };
 
-export default Timer;
+export {Timer, FinalScore};

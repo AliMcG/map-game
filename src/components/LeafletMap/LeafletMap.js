@@ -51,8 +51,8 @@ function LeafletMap({
   }
   function calcCrow(lat1, lon1, lat2, lon2) {
     //This function takes in latitude and longitude of two location and returns the distance between them as the crow flies (in km)
-    console.log('True Lat/Long: ', lat1, lon1);
-    console.log('Guess Lat/Long: ', lat2, lon2);
+    // console.log('True Lat/Long: ', lat1, lon1);
+    // console.log('Guess Lat/Long: ', lat2, lon2);
     var R = 6371; // km
 
     function toRad(Value) {
@@ -71,8 +71,8 @@ function LeafletMap({
         Math.cos(latGuess);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c;
-    console.log('long1: ', lon1, 'Lon2: ', lon2);
-    console.log('distance: ', d);
+    // console.log('long1: ', lon1, 'Lon2: ', lon2);
+    // console.log('distance: ', d);
     setDistance(d.toFixed(1));
     if (d < 100) {
       setAnswer(true);
@@ -83,7 +83,9 @@ function LeafletMap({
   }, []);
   function checkDistance(minRequiredDistance) {
     if (distance < minRequiredDistance) {
-      setAnswer(true);
+      setAnswer(() => {
+        return { [answer]: true };
+      })
     }
   }
   return (

@@ -26,7 +26,7 @@ function App() {
   const [difficulty /* setDifficulty */] = useState({ minDistance: 100 });
   const [guesses, setGuesses] = useState(0);
   const { toggleModal, showModal } = useSettingsModal();
-  const [answer, setAnswer] = useState(false);
+  const [answer, setAnswer] = useState({answer: false, totalGuesses: ""});
   /* FIXME: Proposed example difficulty object:  
         { 
             minDistance: 50 (km)
@@ -69,7 +69,7 @@ function App() {
       <div className='App'>
         <div className='game-components'>
           {long && <MapboxMapTile long={long} lat={lat} />}
-          <Scoreboard distance={distance} guesses={guesses} />
+          <Scoreboard distance={distance} guesses={guesses} answer={answer}/>
           {/* <Timer targetDate={timer} answer={answer} guesses={guesses} /> */}
           {/* <MemoCountdown /> */}
           {long && (
