@@ -8,6 +8,7 @@ const CountdownWrapper = ({answer}) => {
   
   // Renderer callback with condition
   const renderer = ({ minutes, seconds, completed }) => {
+    
     if (completed) {
       // Render a completed state
       return <Completionist />;
