@@ -7,6 +7,7 @@ import Scoreboard from './Scoreboard/Scoreboard.js';
 import useSettingsModal from '../hooks/useSettingsModal';
 import SettingsModal from './SettingsModal/SettingsModal';
 import Timer from './Timer/Timer';
+import MemoCountdown from './Timer/ReactCountDownTimer';
 
 
 
@@ -69,7 +70,8 @@ function App() {
         <div className='game-components'>
           {long && <MapboxMapTile long={long} lat={lat} />}
           <Scoreboard distance={distance} guesses={guesses} />
-          <Timer targetDate={timer} answer={answer} guesses={guesses} />
+          {/* <Timer targetDate={timer} answer={answer} guesses={guesses} /> */}
+          {/* <MemoCountdown /> */}
           {long && (
             <LeafletMap
               distance={distance}
