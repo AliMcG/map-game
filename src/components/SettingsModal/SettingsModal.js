@@ -66,9 +66,11 @@ function SettingsModal({
                     />
                     <br />
                     <input
-                        className="input-row"
-                        type="text"
-                        placeholder="some other difficulty setting..."
+                        // className="input-row"
+                        type="number"
+                        placeholder="maximum no. of guesses"
+                        name ="max guesses"
+                        value = {difficulty.maxGuesses}
                     />
                     {/* TODO: Apply button may carry out all the changes once, instead of the state updating instantly onChange  */}
                     <button type="submit">Apply</button>
