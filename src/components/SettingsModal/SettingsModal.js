@@ -7,22 +7,6 @@ function SettingsModal({
     changeTimeLimit,
     changeTileZoom,
 }) {
-    function updateMD(e) {
-        changeMinDistance(e.target.value);
-        console.log("MD updated: ", e.target.value);
-    }
-    function updateTL(e) {
-        changeTimeLimit(e.target.value);
-        console.log("TL updated: ", e.target.value);
-    }
-    function updateTZ(e) {
-        changeTileZoom(e.target.value);
-        console.log("TZ updated: ", e.target.value);
-    }
-    function updateMG(e) {
-        changeMaxGuesses(e.target.value);
-        console.log("MG updated: ", e.target.value);
-    }
     return (
         <>
             <div className="settings-modal">
@@ -39,7 +23,7 @@ function SettingsModal({
                         name="tile zoom"
                         id="tile-zoom"
                         onChange={(e) => {
-                            updateTZ(e);
+                            changeTileZoom(e.target.value);
                         }}
                     />
                     <br />
@@ -55,7 +39,7 @@ function SettingsModal({
                         max="1000"
                         name="minimum guess radius"
                         onChange={(e) => {
-                            updateMD(e);
+                            changeMinDistance(e.target.value);
                         }}
                     />
                     <br />
@@ -66,19 +50,22 @@ function SettingsModal({
                         name="maximum time"
                         value={difficulty.timeLimit}
                         onChange={(e) => {
-                            updateTL(e);
+                            changeTimeLimit(e.target.value);
                         }}
                     />
                     <br />
-                    <label htmlFor="max guesses">Maximum no. of guesses: </label>
+                    <label htmlFor="max guesses">
+                        Maximum no. of guesses:{" "}
+                    </label>
                     <input
                         // className="input-row"
                         type="number"
                         placeholder="maximum no. of guesses"
-                        name ="max guesses"
-                        value = {difficulty.maxGuesses}
+                        name="max guesses"
+                        min="1"
+                        value={difficulty.maxGuesses}
                         onChange={(e) => {
-                            updateMG(e);
+                            changeMaxGuesses(e.target.value);
                         }}
                     />
                     {/* TODO: Apply button may carry out all the changes once, instead of the state updating instantly onChange  */}
