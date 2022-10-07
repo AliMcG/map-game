@@ -12,7 +12,7 @@ const CountdownWrapper = ({answer}) => {
     if (completed) {
       // Render a completed state
       return <Completionist />;
-    } else if (answer.answer) {
+    } else if (answer) {
       return <FinalScore minutes={minutes} seconds={seconds} guesses={answer.totalGuesses}/>
     }
     
