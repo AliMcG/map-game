@@ -10,7 +10,7 @@ import SettingsModal from "./SettingsModal/SettingsModal";
 import useSettings from "../hooks/useSettings";
 
 function App() {
-    const { difficulty, changeTileZoom, changeMinDistance, changeTimeLimit } =
+    const { difficulty, changeTileZoom, changeMinDistance, changeTimeLimit, changeMaxGuesses } =
         useSettings();
     // Sets a date time number for five minutes in future
     // Gets the time now and then adds to 2 numbers together to pass to the timer component
@@ -106,10 +106,11 @@ function App() {
                 {showModal && (
                     <SettingsModal
                         toggleModal={toggleModal}
-                        changeTileZoom={changeTileZoom}
-                        changeMinDistance={changeMinDistance}
-                        changeTimeLimit={changeTimeLimit}
                         difficulty={difficulty}
+                        changeMaxGuesses={changeMaxGuesses}
+                        changeMinDistance={changeMinDistance}
+                        changeTileZoom={changeTileZoom}
+                        changeTimeLimit={changeTimeLimit}
                     />
                 )}
             </div>

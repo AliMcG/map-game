@@ -2,6 +2,7 @@ import "./SettingsModal.css";
 function SettingsModal({
     toggleModal,
     difficulty,
+    changeMaxGuesses,
     changeMinDistance,
     changeTimeLimit,
     changeTileZoom,
@@ -17,6 +18,10 @@ function SettingsModal({
     function updateTZ(e) {
         changeTileZoom(e.target.value);
         console.log("TZ updated: ", e.target.value);
+    }
+    function updateMG(e) {
+        changeMaxGuesses(e.target.value);
+        console.log("MG updated: ", e.target.value);
     }
     return (
         <>
@@ -58,19 +63,23 @@ function SettingsModal({
                     <input
                         type="number"
                         placeholder="maximum time"
-                        value={difficulty.timeLimit}
                         name="maximum time"
+                        value={difficulty.timeLimit}
                         onChange={(e) => {
                             updateTL(e);
                         }}
                     />
                     <br />
+                    <label htmlFor="max guesses">Maximum no. of guesses: </label>
                     <input
                         // className="input-row"
                         type="number"
                         placeholder="maximum no. of guesses"
                         name ="max guesses"
                         value = {difficulty.maxGuesses}
+                        onChange={(e) => {
+                            updateMG(e);
+                        }}
                     />
                     {/* TODO: Apply button may carry out all the changes once, instead of the state updating instantly onChange  */}
                     <button type="submit">Apply</button>

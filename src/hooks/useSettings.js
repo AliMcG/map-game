@@ -21,8 +21,13 @@ export default function useSettings() {
         setDifficulty({ ...difficulty, tileZoom: newTileZoom });
         console.log("tileZoom changed to :", newTileZoom);
     }
+    function changeMaxGuesses(newMaxGuesses) {
+        setDifficulty({...difficulty, maxGuesses: newMaxGuesses });
+        console.log("maxGuesses changed to :", newMaxGuesses);
+    }
     return {
         difficulty,
+        changeMaxGuesses,
         changeMinDistance,
         changeTimeLimit,
         changeTileZoom,
