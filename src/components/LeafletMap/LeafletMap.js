@@ -20,11 +20,11 @@ function LeafletMap({
     setAnswer
 }) {
     const [testGuesses, setTestGuesses] = useState([]);
-    const [guess1, setGuess1] = useState();
+/*     const [guess1, setGuess1] = useState();
     const [guess2, setGuess2] = useState();
     const [guess3, setGuess3] = useState();
     const [guess4, setGuess4] = useState();
-    const [guess5, setGuess5] = useState();
+    const [guess5, setGuess5] = useState(); */
 
     function LocationMarker() {
         /* const map = useMapEvents({
@@ -55,8 +55,8 @@ function LeafletMap({
                 // calcCrow(lat, long, guessLat, guessLong);
                 calcCrow(lat, long, e.latlng.lat, e.latlng.lng);
                 setGuesses((prev) => prev + 1);
-                setTestGuesses([...testGuesses,[]]);
-                if (guesses === 0) {
+                setTestGuesses([...testGuesses,[e.latlng.lat, e.latlng.lng]]);
+/*                 if (guesses === 0) {
                     setGuess1([e.latlng.lat, e.latlng.lng]);
                 } else if (guesses === 1) {
                     setGuess2([e.latlng.lat, e.latlng.lng]);
@@ -66,7 +66,7 @@ function LeafletMap({
                     setGuess4([e.latlng.lat, e.latlng.lng]);
                 } else if (guesses === 4) {
                     setGuess5([e.latlng.lat, e.latlng.lng]);
-                }
+                } */
             },
         });
     }
