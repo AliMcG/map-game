@@ -9,23 +9,21 @@ import {
 import "./LeafletMap.css";
 
 function LeafletMap({
-    /* distance, */
     setDistance,
     long,
     lat,
     difficulty,
-    guesses,
-    setGuesses,
     answer,
     setAnswer,
+    testGuesses,
+    setTestGuesses,
 }) {
-    const [testGuesses, setTestGuesses] = useState([]);
+    /* const [testGuesses, setTestGuesses] = useState([]); */
 
     function LocationMarker() {
         const map = useMapEvents({
             click(e) {
                 calcCrow(lat, long, e.latlng.lat, e.latlng.lng);
-                setGuesses((prev) => prev + 1);
                 setTestGuesses([...testGuesses, [e.latlng.lat, e.latlng.lng]]);
             },
         });

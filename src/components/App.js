@@ -19,7 +19,7 @@ function App() {
     const timer = now + inFiveMinutes;
 
     const parser = new DOMParser();
-
+    const [testGuesses, setTestGuesses] = useState([]);
     const [long, setLong] = useState();
     const [lat, setLat] = useState();
     const [distance, setDistance] = useState();
@@ -69,7 +69,7 @@ function App() {
                     )}
                     <Scoreboard
                         distance={distance}
-                        guesses={guesses}
+                        guesses={testGuesses.length}
                         difficulty={difficulty}
                         answer={answer}
                     />
@@ -90,6 +90,8 @@ function App() {
                             setGuesses={setGuesses}
                             answer={answer}
                             setAnswer={setAnswer}
+                            testGuesses={testGuesses} 
+                            setTestGuesses={setTestGuesses}
                         />
                     )}
                 </div>

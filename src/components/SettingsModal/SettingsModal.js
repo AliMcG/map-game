@@ -38,13 +38,6 @@ function SettingsModal({
                         }}
                     />
                     <br />
-                    {/* <input
-                            type="range"
-                            name="tile zoom"
-                            min="1"
-                            max="20"
-                            placeholder="tile zoom"
-                        ></input><label for="tile zoom">Tile zoom(between 1 and 20):</label> */}
                     <label htmlFor="minimum guess radius">
                         Mimimum guess radius (km):{" "}
                     </label>
