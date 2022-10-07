@@ -1,78 +1,83 @@
-import './App.css';
-import { useState, useEffect } from 'react';
-import LeafletMap from './LeafletMap/LeafletMap.js';
-import MapboxMapTile from './MapboxMap/MapboxMap.js';
-import Instructions from './Instructions/Instructions.js';
-import Scoreboard from './Scoreboard/Scoreboard.js';
-import useSettingsModal from '../hooks/useSettingsModal';
-import SettingsModal from './SettingsModal/SettingsModal';
-import Timer from './Timer/Timer';
-
-
+import "./App.css";
+import { useState, useEffect } from "react";
+import LeafletMap from "./LeafletMap/LeafletMap.js";
+import MapboxMapTile from "./MapboxMap/MapboxMap.js";
+import Instructions from "./Instructions/Instructions.js";
+import Scoreboard from "./Scoreboard/Scoreboard.js";
+import useSettingsModal from "../hooks/useSettingsModal";
+import SettingsModal from "./SettingsModal/SettingsModal";
+import Timer from "./Timer/Timer";
+import useSettings from "../hooks/useSettings";
 
 function App() {
+  const { difficulty, changeTileZoom, changeMinDistance, changeTimeLimit } =
+    useSettings();
   // Sets a date time number for five minutes in future
   // Gets the time now and then adds to 2 numbers together to pass to the timer component
   const inFiveMinutes = 1 * 5 * 1 * 60 * 1000;
   const now = new Date().getTime();
   const timer = now + inFiveMinutes;
 
-  const parser = new DOMParser()
+  const parser = new DOMParser();
 
   const [long, setLong] = useState();
   const [lat, setLat] = useState();
   const [distance, setDistance] = useState();
-  const [difficulty /* setDifficulty */] = useState({ minDistance: 100 });
   const [guesses, setGuesses] = useState(0);
   const { toggleModal, showModal } = useSettingsModal();
   const [answer, setAnswer] = useState(false);
-  /* FIXME: Proposed example difficulty object:  
-        { 
-            minDistance: 50 (km)
-            mapTileZoom: 5
-            RoadNames: false 
-        }
-    */
 
   useEffect(() => {
     getRandomCoords();
   }, []);
   async function getRandomCoords() {
-    // Sends a GET request to our Express.js server 
+    // Sends a GET request to our Express.js server
     //which in tern gets the random coords from this api: "https://api.3geonames.org/?randomland=yes&json=1"
     const response = await fetch(process.env.REACT_APP_RANDOM_COORDS_URL);
     const data = await response.json();
-    
+
     // The data returns in XML format parser from DOMParser is a way to get inside the data object.
     // https://www.w3schools.com/xml/xml_parser.asp
-    const newData = parser.parseFromString(data, "text/xml")
-    
-    const coords = newData.getElementsByTagName("major")
+    const newData = parser.parseFromString(data, "text/xml");
+
+    const coords = newData.getElementsByTagName("major");
     // This is the path into the data
     // console.log(coords[0].children[1].innerHTML)
     setLat(coords[0].children[0].innerHTML);
     setLong(coords[0].children[1].innerHTML);
-    
+
     // Hardcoded coordinates for Exeter, to help with testing or debugging.
     // setLat(50.71344);
     // setLong(-3.5444);
-    
   }
   function handleReset() {
     setGuesses(0);
     setDistance(0);
     getRandomCoords();
   }
+
+  console.log("dtl (app):", difficulty.timeLimit);
   return (
     <>
-      <div className='App'>
-        <div className='game-components'>
-          {long && <MapboxMapTile long={long} lat={lat} />}
-          <Scoreboard distance={distance} guesses={guesses} />
-          <Timer targetDate={timer} answer={answer} guesses={guesses} />
+      <div className="App">
+        <div className="game-components">
+          {long && (
+            <MapboxMapTile long={long} lat={lat} zoom={difficulty.tileZoom} />
+          )}
+          <Scoreboard
+            distance={distance}
+            guesses={guesses}
+            difficulty={difficulty}
+          />
+          <Timer
+            timeLimit={difficulty.timeLimit}
+            targetDate={timer}
+            answer={answer}
+            guesses={guesses}
+          />
           {long && (
             <LeafletMap
-              distance={distance}
+              // distance={distance}
               setDistance={setDistance}
               long={long}
               lat={lat}
@@ -84,7 +89,7 @@ function App() {
             />
           )}
         </div>
-        <div className='lower-container'>
+        <div className="lower-container">
           <Instructions />
           <button
             onClick={() => {
@@ -95,7 +100,15 @@ function App() {
           </button>
         </div>
         <button onClick={toggleModal}>Settings</button>
-        <SettingsModal showModal={showModal} toggleModal={toggleModal} />
+        {showModal && (
+          <SettingsModal
+            toggleModal={toggleModal}
+            changeTileZoom={changeTileZoom}
+            changeMinDistance={changeMinDistance}
+            changeTimeLimit={changeTimeLimit}
+            difficulty={difficulty}
+          />
+        )}
       </div>
     </>
   );
