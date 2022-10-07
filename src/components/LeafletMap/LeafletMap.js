@@ -17,10 +17,10 @@ function LeafletMap({
     guesses,
     setGuesses,
     answer,
-    setAnswer
+    setAnswer,
 }) {
     const [testGuesses, setTestGuesses] = useState([]);
-/*     const [guess1, setGuess1] = useState();
+    /*     const [guess1, setGuess1] = useState();
     const [guess2, setGuess2] = useState();
     const [guess3, setGuess3] = useState();
     const [guess4, setGuess4] = useState();
@@ -55,8 +55,8 @@ function LeafletMap({
                 // calcCrow(lat, long, guessLat, guessLong);
                 calcCrow(lat, long, e.latlng.lat, e.latlng.lng);
                 setGuesses((prev) => prev + 1);
-                setTestGuesses([...testGuesses,[e.latlng.lat, e.latlng.lng]]);
-/*                 if (guesses === 0) {
+                setTestGuesses([...testGuesses, [e.latlng.lat, e.latlng.lng]]);
+                /*                 if (guesses === 0) {
                     setGuess1([e.latlng.lat, e.latlng.lng]);
                 } else if (guesses === 1) {
                     setGuess2([e.latlng.lat, e.latlng.lng]);
@@ -126,7 +126,14 @@ function LeafletMap({
                     <Popup>This is the correct answer!</Popup>
                 </Marker>
             )}
-            {guess1 && (
+            {testGuesses.map((guess, index) => {
+                return (
+                    <Marker position={guess} Popup={true}>
+                        <Popup>Guess {index+1}</Popup>
+                    </Marker>
+                );
+            })}
+            {/*            {guess1 && (
                 <Marker position={guess1} Popup={true}>
                     <Popup>Guess 1</Popup>
                 </Marker>
@@ -150,7 +157,7 @@ function LeafletMap({
                 <Marker position={guess5}>
                     <Popup>Guess 5</Popup>
                 </Marker>
-            )}
+            )} */}
 
             <LocationMarker />
         </MapContainer>
