@@ -23,7 +23,6 @@ function App() {
     const [long, setLong] = useState();
     const [lat, setLat] = useState();
     const [distance, setDistance] = useState();
-    const [guesses, setGuesses] = useState(0);
     const { toggleModal, showModal } = useSettingsModal();
     const [answer, setAnswer] = useState(false);
     useEffect(() => {
@@ -50,10 +49,9 @@ function App() {
         // setLong(-3.5444);
     }
     function handleReset() {
-        setGuesses(0);
         setDistance(0);
+        setTestGuesses([]);
         getRandomCoords();
-        setTestGuesses([])
     }
 
     console.log("dtl (app):", difficulty.timeLimit);
@@ -83,16 +81,13 @@ function App() {
           /> */}
                     {long && (
                         <LeafletMap
-                            distance={distance}
                             setDistance={setDistance}
                             long={long}
                             lat={lat}
                             difficulty={difficulty}
-                            guesses={guesses}
-                            setGuesses={setGuesses}
                             answer={answer}
                             setAnswer={setAnswer}
-                            testGuesses={testGuesses} 
+                            testGuesses={testGuesses}
                             setTestGuesses={setTestGuesses}
                         />
                     )}
