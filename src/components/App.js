@@ -53,9 +53,11 @@ function App() {
         setGuesses(0);
         setDistance(0);
         getRandomCoords();
+        setTestGuesses([])
     }
 
     console.log("dtl (app):", difficulty.timeLimit);
+
     return (
         <>
             <div className="App">
@@ -81,7 +83,7 @@ function App() {
           /> */}
                     {long && (
                         <LeafletMap
-                            // distance={distance}
+                            distance={distance}
                             setDistance={setDistance}
                             long={long}
                             lat={lat}

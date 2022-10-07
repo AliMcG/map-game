@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import {
     MapContainer,
     TileLayer,
@@ -17,9 +16,8 @@ function LeafletMap({
     setAnswer,
     testGuesses,
     setTestGuesses,
+    distance,
 }) {
-    /* const [testGuesses, setTestGuesses] = useState([]); */
-
     function LocationMarker() {
         const map = useMapEvents({
             click(e) {
@@ -53,10 +51,10 @@ function LeafletMap({
         console.log("long1: ", lon1, "Lon2: ", lon2);
         console.log("distance: ", d);
         setDistance(d.toFixed(1));
-        console.log("minDist (calcCrow, leafletMap): ", difficulty.minDistance);
         if (d < difficulty.minDistance) {
             setAnswer(true);
         }
+        return d.toFixed(1)
     }
     return (
         <MapContainer
@@ -78,7 +76,7 @@ function LeafletMap({
             {testGuesses.map((guess, index) => {
                 return (
                     <Marker position={guess} Popup={true}>
-                        <Popup>Guess {index + 1}</Popup>
+                        <Popup>{`Guess ${index + 1}:\n ${calcCrow(lat,long,guess[0],guess[1])} km `}</Popup>
                     </Marker>
                 );
             })}
