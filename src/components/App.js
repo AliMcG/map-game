@@ -6,7 +6,7 @@ import Instructions from "./Instructions/Instructions.js";
 import Scoreboard from "./Scoreboard/Scoreboard.js";
 import useSettingsModal from "../hooks/useSettingsModal";
 import SettingsModal from "./SettingsModal/SettingsModal";
-import Timer from "./Timer/Timer";
+// import {Timer} from "./Timer/Timer";
 import useSettings from "../hooks/useSettings";
 
 function App() {
@@ -68,13 +68,14 @@ function App() {
             distance={distance}
             guesses={guesses}
             difficulty={difficulty}
+            answer={answer}
           />
-          <Timer
+          {/* <Timer
             timeLimit={difficulty.timeLimit}
             targetDate={timer}
             answer={answer}
             guesses={guesses}
-          />
+          /> */}
           {long && (
             <LeafletMap
               // distance={distance}
