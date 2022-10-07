@@ -10,14 +10,17 @@
     /* display: inline-block; */
     display: flex;
     flex-direction: column;
-    justify-items: center;
+    /* justify-items: center; */
     align-items: center;
     z-index: 9999;
     background-color: beige;
 }
 .input-row {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-#tile-zoom {
-    width: 50%;
+.input-field {
+    width: 15%;
 }
+
