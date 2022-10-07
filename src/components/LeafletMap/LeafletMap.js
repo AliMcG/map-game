@@ -20,53 +20,13 @@ function LeafletMap({
     setAnswer,
 }) {
     const [testGuesses, setTestGuesses] = useState([]);
-    /*     const [guess1, setGuess1] = useState();
-    const [guess2, setGuess2] = useState();
-    const [guess3, setGuess3] = useState();
-    const [guess4, setGuess4] = useState();
-    const [guess5, setGuess5] = useState(); */
 
     function LocationMarker() {
-        /* const map = useMapEvents({
-            click(e) {
-                // setGuessLat(e.latlng.lat);
-                // setGuessLong(e.latlng.lng);
-                // calcCrow(lat, long, guessLat, guessLong);
-                calcCrow(lat, long, e.latlng.lat, e.latlng.lng);
-                setGuesses((prev) => prev + 1);
-                if (guesses === 0) {
-                    setGuess1([e.latlng.lat, e.latlng.lng]);
-                } else if (guesses === 1) {
-                    setGuess2([e.latlng.lat, e.latlng.lng]);
-                } else if (guesses === 2) {
-                    setGuess3([e.latlng.lat, e.latlng.lng]);
-                } else if (guesses === 3) {
-                    setGuess4([e.latlng.lat, e.latlng.lng]);
-                } else if (guesses === 4) {
-                    setGuess5([e.latlng.lat, e.latlng.lng]);
-                }
-            },
-        }); */
-
         const map = useMapEvents({
             click(e) {
-                // setGuessLat(e.latlng.lat);
-                // setGuessLong(e.latlng.lng);
-                // calcCrow(lat, long, guessLat, guessLong);
                 calcCrow(lat, long, e.latlng.lat, e.latlng.lng);
                 setGuesses((prev) => prev + 1);
                 setTestGuesses([...testGuesses, [e.latlng.lat, e.latlng.lng]]);
-                /*                 if (guesses === 0) {
-                    setGuess1([e.latlng.lat, e.latlng.lng]);
-                } else if (guesses === 1) {
-                    setGuess2([e.latlng.lat, e.latlng.lng]);
-                } else if (guesses === 2) {
-                    setGuess3([e.latlng.lat, e.latlng.lng]);
-                } else if (guesses === 3) {
-                    setGuess4([e.latlng.lat, e.latlng.lng]);
-                } else if (guesses === 4) {
-                    setGuess5([e.latlng.lat, e.latlng.lng]);
-                } */
             },
         });
     }
@@ -100,15 +60,6 @@ function LeafletMap({
             setAnswer(true);
         }
     }
-    /* useEffect(() => {
-        checkDistance(difficulty.minDistance);
-    }, []);
-    console.log("min distance lmap: ", difficulty.minDistance);
-    function checkDistance(minRequiredDistance) {
-        if (distance < minRequiredDistance) {
-            setAnswer(true);
-        }
-    } */
     return (
         <MapContainer
             className="leaflet-map"
@@ -129,36 +80,10 @@ function LeafletMap({
             {testGuesses.map((guess, index) => {
                 return (
                     <Marker position={guess} Popup={true}>
-                        <Popup>Guess {index+1}</Popup>
+                        <Popup>Guess {index + 1}</Popup>
                     </Marker>
                 );
             })}
-            {/*            {guess1 && (
-                <Marker position={guess1} Popup={true}>
-                    <Popup>Guess 1</Popup>
-                </Marker>
-            )}
-            {guess2 && (
-                <Marker position={guess2}>
-                    <Popup>Guess 2</Popup>
-                </Marker>
-            )}
-            {guess3 && (
-                <Marker position={guess3}>
-                    <Popup>Guess 3</Popup>
-                </Marker>
-            )}
-            {guess4 && (
-                <Marker position={guess4}>
-                    <Popup>Guess 4</Popup>
-                </Marker>
-            )}
-            {guess5 && (
-                <Marker position={guess5}>
-                    <Popup>Guess 5</Popup>
-                </Marker>
-            )} */}
-
             <LocationMarker />
         </MapContainer>
     );
