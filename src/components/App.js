@@ -26,6 +26,8 @@ function App() {
   const [guesses, setGuesses] = useState(0);
   const { toggleModal, showModal } = useSettingsModal();
   const [answer, setAnswer] = useState(false);
+//temp difficulty multiplier setting for score
+  const [dif, setDif] = useState(100)
 
   useEffect(() => {
     getRandomCoords();
@@ -69,6 +71,7 @@ function App() {
             guesses={guesses}
             difficulty={difficulty}
             answer={answer}
+            dif = {dif}
           />
           {/* <Timer
             timeLimit={difficulty.timeLimit}
