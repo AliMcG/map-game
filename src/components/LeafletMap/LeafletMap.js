@@ -73,7 +73,7 @@ function LeafletMap({
             )}
             {testGuesses.map((guess, index) => {
                 return (
-                    <Marker position={guess} Popup={true}>
+                    <Marker position={guess} Popup={true} key={index}>
                         <Popup>{`Guess ${index + 1}:\n ${calcCrow(
                             lat,
                             long,

@@ -30,7 +30,7 @@ function App() {
     }, []);
     async function getRandomCoords() {
         // Sends a GET request to our Express.js server
-        //which in tern gets the random coords from this api: "https://api.3geonames.org/?randomland=yes&json=1"
+        //which in turn gets the random coords from this api: "https://api.3geonames.org/?randomland=yes&json=1"
         const response = await fetch(process.env.REACT_APP_RANDOM_COORDS_URL);
         const data = await response.json();
 
