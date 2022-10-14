@@ -22,6 +22,9 @@ function LeafletMap({
             click(e) {
                 calcCrow(lat, long, e.latlng.lat, e.latlng.lng);
                 setTestGuesses([...testGuesses, [e.latlng.lat, e.latlng.lng]]);
+                if (testGuesses.length > difficulty.maxGuesses) {
+                    console.log("Do something different in this conditional statement, since there have been too many guesses.");
+                }
             },
         });
     }
