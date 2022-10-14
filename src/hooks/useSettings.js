@@ -6,6 +6,7 @@ export default function useSettings() {
         minDistance: 100,
         timeLimit: 300,
         tileZoom: 8,
+        maxGuesses:10,
         //Future options: Road names/ country names on, 
     });
     function changeMinDistance(newDistance) {
@@ -20,8 +21,13 @@ export default function useSettings() {
         setDifficulty({ ...difficulty, tileZoom: newTileZoom });
         console.log("tileZoom changed to :", newTileZoom);
     }
+    function changeMaxGuesses(newMaxGuesses) {
+        setDifficulty({...difficulty, maxGuesses: newMaxGuesses });
+        console.log("maxGuesses changed to :", newMaxGuesses);
+    }
     return {
         difficulty,
+        changeMaxGuesses,
         changeMinDistance,
         changeTimeLimit,
         changeTileZoom,
