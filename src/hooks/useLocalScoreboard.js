@@ -36,5 +36,22 @@ export default function useLocalScoreboard() {
         );
     }
 
-    return getScoreboard;
+    //Replace lowest score ?
+    function replaceLowestScore(newScoreObject) {
+        let currentScoreboardSorted = JSON.parse(
+            localStorage.getItem("localHighScores")
+        ).sort((a, b) => {
+            return b.score - a.score;
+        });
+        if (
+            currentScoreboardSorted.length >= 20 &&
+            newScoreObject.score >
+                currentScoreboardSorted[currentScoreboardSorted.length - 1]
+                    .score
+        ) {
+            currentScoreboardSorted[currentScoreboardSorted.length - 1] =
+                newScoreObject;
+        }
+    }
+    return { getScoreboard, setScoreboard, replaceLowestScore };
 }
