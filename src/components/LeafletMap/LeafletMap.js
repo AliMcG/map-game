@@ -14,15 +14,15 @@ function LeafletMap({
     difficulty,
     answer,
     setAnswer,
-    testGuesses,
-    setTestGuesses,
+    guesses,
+    setGuesses,
 }) {
     function LocationMarker() {
         useMapEvents({
             click(e) {
                 calcCrow(lat, long, e.latlng.lat, e.latlng.lng);
-                setTestGuesses([...testGuesses, [e.latlng.lat, e.latlng.lng]]);
-                if (testGuesses.length > difficulty.maxGuesses) {
+                setGuesses([...guesses, [e.latlng.lat, e.latlng.lng]]);
+                if (guesses.length > difficulty.maxGuesses) {
                     console.log("Do something different in this conditional statement, since there have been too many guesses.");
                 }
             },
@@ -74,7 +74,7 @@ function LeafletMap({
                     <Popup>This is the correct answer!</Popup>
                 </Marker>
             )}
-            {testGuesses.map((guess, index) => {
+            {guesses.map((guess, index) => {
                 return (
                     <Marker position={guess} Popup={true} key={index}>
                         <Popup>{`Guess ${index + 1}:\n ${calcCrow(

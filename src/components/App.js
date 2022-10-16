@@ -19,7 +19,7 @@ function App() {
     const timer = now + inFiveMinutes;
 
     const parser = new DOMParser();
-    const [testGuesses, setTestGuesses] = useState([]);
+    const [guesses, setGuesses] = useState([]);
     const [long, setLong] = useState();
     const [lat, setLat] = useState();
     const [distance, setDistance] = useState();
@@ -50,7 +50,7 @@ function App() {
     }
     function handleReset() {
         setDistance(0);
-        setTestGuesses([]);
+        setGuesses([]);
         getRandomCoords();
     }
 
@@ -69,7 +69,7 @@ function App() {
                     )}
                     <Scoreboard
                         distance={distance}
-                        guesses={testGuesses.length}
+                        guesses={guesses.length}
                         difficulty={difficulty}
                         answer={answer}
                     />
@@ -87,8 +87,8 @@ function App() {
                             difficulty={difficulty}
                             answer={answer}
                             setAnswer={setAnswer}
-                            testGuesses={testGuesses}
-                            setTestGuesses={setTestGuesses}
+                            guesses={guesses}
+                            setGuesses={setGuesses}
                         />
                     )}
                 </div>
