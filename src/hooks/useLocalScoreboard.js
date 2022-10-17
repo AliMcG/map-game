@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 
 export default function useLocalScoreboard() {
@@ -13,31 +13,31 @@ export default function useLocalScoreboard() {
             date: time.Now(),
         },
         {
-            score: 10,
+            score: 126,
             city: Arkhangelsk,
             time(s): 95,
             guesses: 11,
             date: time.Now(),
         },
     ]
-    
     */
-    function getScoreboard() {
-        let localHighScores = JSON.parse(
-            localStorage.getItem("localHighScores")
-        );
-        console.log("localHighScores:", localHighScores);
-        return localHighScores;
-    }
-    function setScoreboard(newScoreObject) {
+    const [localHighScores, setLocalHighScores] = useState(() => {
+        let scores = localStorage.getItem("localHighScores");
+        return scores == null ? [] : JSON.parse(scores);
+    });
+    useEffect(() => {
         localStorage.setItem(
             "localHighScores",
-            JSON.stringify([...getScoreboard(), newScoreObject])
+            JSON.stringify(
+                localHighScores.sort((a, b) => {
+                    return b.score - a.score;
+                })
+            )
         );
-    }
+    }, [localHighScores]);
 
     //Replace lowest score ?
-    function replaceLowestScore(newScoreObject) {
+    /* function replaceLowestScore(newScoreObject) {
         let currentScoreboardSorted = JSON.parse(
             localStorage.getItem("localHighScores")
         ).sort((a, b) => {
@@ -52,6 +52,8 @@ export default function useLocalScoreboard() {
             currentScoreboardSorted[currentScoreboardSorted.length - 1] =
                 newScoreObject;
         }
-    }
-    return { getScoreboard, setScoreboard, replaceLowestScore };
+    } */
+    return {
+        localHighScores,
+    };
 }
