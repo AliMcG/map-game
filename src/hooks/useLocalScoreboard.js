@@ -36,6 +36,16 @@ export default function useLocalScoreboard() {
         );
     }, [localHighScores]);
 
+    function addNewHighScoreEntry(newScoreObject) {
+        let intermediateHighScores = localHighScores
+            .push(newScoreObject)
+            .sort((a, b) => {
+                return b.score - a.score;
+            });
+        console.log("intermediateHighScores: ", intermediateHighScores);
+        setLocalHighScores(intermediateHighScores.slice(0, 20));
+    }
+
     //Replace lowest score ?
     /* function replaceLowestScore(newScoreObject) {
         let currentScoreboardSorted = JSON.parse(
@@ -55,5 +65,6 @@ export default function useLocalScoreboard() {
     } */
     return {
         localHighScores,
+        addNewHighScoreEntry,
     };
 }
