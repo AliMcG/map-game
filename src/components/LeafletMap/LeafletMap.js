@@ -16,6 +16,7 @@ function LeafletMap({
     setAnswer,
     testGuesses,
     setTestGuesses,
+    mapCoords,
 }) {
     function LocationMarker() {
         useMapEvents({
@@ -61,7 +62,7 @@ function LeafletMap({
         <MapContainer
             className="leaflet-map"
             id="map"
-            center={[0, 0]}
+            center={mapCoords}
             zoom={3}
             scrollWheelZoom={true}
         >

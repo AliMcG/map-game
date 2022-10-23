@@ -10,6 +10,7 @@ import SettingsModal from "./SettingsModal/SettingsModal";
 import useSettings from "../hooks/useSettings";
 
 function App() {
+    const initialMapCoords = [0, 0]
     const { difficulty, changeTileZoom, changeMinDistance, changeTimeLimit, changeMaxGuesses } =
         useSettings();
     // Sets a date time number for five minutes in future
@@ -25,6 +26,7 @@ function App() {
     const [distance, setDistance] = useState();
     const { toggleModal, showModal } = useSettingsModal();
     const [answer, setAnswer] = useState(false);
+    const [mapCoords, setMapCoords] = useState(initialMapCoords)
     useEffect(() => {
         getRandomCoords();
     }, []);
@@ -52,6 +54,8 @@ function App() {
         setDistance(0);
         setTestGuesses([]);
         getRandomCoords();
+        setAnswer(false)
+        setMapCoords(initialMapCoords)
     }
 
     console.log("dtl (app):", difficulty.timeLimit);
@@ -81,6 +85,7 @@ function App() {
           /> */}
                     {long && (
                         <LeafletMap
+                            mapCoords={mapCoords}
                             setDistance={setDistance}
                             long={long}
                             lat={lat}
